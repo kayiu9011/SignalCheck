@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f4">
+    <meta name="description" content="A privacy-first, explainable phishing message checker for learning how to spot suspicious messages in Singapore.">
+    <title>SignalCheck — Pause. Check. Protect.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SignalCheck home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3.5 27 8v7.2c0 6.5-4.5 11.1-11 13.3C9.5 26.3 5 21.7 5 15.2V8l11-4.5Z" stroke="currentColor" stroke-width="2"/>
+            <path d="m11.2 16.2 3.1 3.1 6.6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>signal<span class="brand-light">check</span></span>
+      </a>
+      <div class="topbar-note"><span class="status-dot"></span> A learning project for a safer internet</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> YOUR MESSAGE, DECODED</p>
+          <h1 id="hero-title">Pause.<br><span>Check.</span> Protect.</h1>
+          <p class="hero-description">Not sure about that text or email? See the signals behind it before you click, reply, or share your details.</p>
+          <div class="hero-note">
+            <span class="note-icon" aria-hidden="true">↳</span>
+            Built for learning. Made for Singapore.
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-card">
+            <div class="art-card-top"><span class="art-sender">+65 8••• 2194</span><span class="art-time">just now</span></div>
+            <p>Your parcel is on hold. Pay $1.99 now to avoid return.</p>
+            <span class="art-link">singpost-track.help/sg</span>
+            <div class="art-warning"><span>!</span> Something feels off</div>
+          </div>
+          <span class="art-spark spark-one">✳</span>
+          <span class="art-spark spark-two">✳</span>
+          <span class="art-dot dot-one"></span>
+          <span class="art-dot dot-two"></span>
+        </div>
+      </section>
+
+      <section class="analyzer-section" aria-labelledby="analyzer-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> THE MESSAGE CHECKER</p>
+            <h2 id="analyzer-title">What did they send you?</h2>
+          </div>
+          <span class="step-label"><span>01</span> / CHECK A MESSAGE</span>
+        </div>
+
+        <div class="checker-card">
+          <form id="analyzer-form">
+            <label class="input-label" for="message-input">Paste the text or email here</label>
+            <div class="textarea-wrap">
+              <textarea id="message-input" name="message" maxlength="5000" placeholder="Paste a suspicious message — links included — and we’ll look for common warning signs." aria-describedby="privacy-note character-count" required></textarea>
+              <span class="input-corner" aria-hidden="true">↘</span>
+            </div>
+            <div class="input-meta">
+              <span id="privacy-note"><svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.3"/></svg> Your message stays on this device.</span>
+              <span id="character-count" aria-live="polite">0 / 5,000</span>
+            </div>
+            <div class="form-actions">
+              <button class="analyze-button" type="submit">Check this message <span aria-hidden="true">↗</span></button>
+              <div class="examples">
+                <span>TRY AN EXAMPLE</span>
+                <button type="button" class="example-button" data-example="parcel">Parcel</button>
+                <button type="button" class="example-button" data-example="singpass">Account alert</button>
+                <button type="button" class="example-button" data-example="ordinary">Ordinary text</button>
+              </div>
+            </div>
+          </form>
+
+          <section id="results" class="results" aria-live="polite" aria-atomic="true" hidden>
+            <div class="results-top">
+              <div class="result-status">
+                <span id="result-icon" class="result-icon" aria-hidden="true"></span>
+                <div>
+                  <p id="result-kicker" class="result-kicker"></p>
+                  <h3 id="result-title"></h3>
+                </div>
+              </div>
+              <div class="score-wrap"><span id="risk-score">0</span><span>/ 100<br>RISK SCORE</span></div>
+            </div>
+            <div class="score-track" aria-hidden="true"><span id="score-bar"></span></div>
+            <p id="result-summary" class="result-summary"></p>
+            <div id="signals-wrap" class="signals-wrap" hidden>
+              <h4>Signals we spotted</h4>
+              <ul id="signals-list" class="signals-list"></ul>
+            </div>
+            <div class="result-footer"><span class="footer-arrow" aria-hidden="true">↳</span><span id="result-advice"></span></div>
+            <p class="disclaimer">This checker uses transparent text patterns, not a security database or AI model. A low score does not guarantee a message is safe.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="learn-section" aria-labelledby="learn-title">
+        <div class="learn-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> A QUICK FIELD GUIDE</p>
+            <h2 id="learn-title">Trust your pause.</h2>
+          </div>
+          <p>Scams work by rushing you. Take a moment to verify before you act.</p>
+        </div>
+        <div class="guide-grid">
+          <article class="guide-card">
+            <span class="guide-number">01</span>
+            <div class="guide-icon icon-urgency" aria-hidden="true">!</div>
+            <h3>Urgency is a tactic</h3>
+            <p>“Act now” and “account suspended” are meant to short-circuit a careful check.</p>
+          </article>
+          <article class="guide-card">
+            <span class="guide-number">02</span>
+            <div class="guide-icon icon-link" aria-hidden="true">↗</div>
+            <h3>Check the real address</h3>
+            <p>Look at the actual domain, not the display name. When in doubt, visit the official site yourself.</p>
+          </article>
+          <article class="guide-card">
+            <span class="guide-number">03</span>
+            <div class="guide-icon icon-lock" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 1 1 8 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Keep codes to yourself</h3>
+            <p>Never share your password, banking PIN, or one-time password in response to a message.</p>
+          </article>
+        </div>
+        <div class="official-note"><span aria-hidden="true">i</span><p>In Singapore, visit <a href="https://www.scamshield.gov.sg/" target="_blank" rel="noreferrer">ScamShield</a> for scam resources or call the 24/7 ScamShield Helpline at <a href="tel:1799">1799</a> for advice.</p></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#" aria-label="SignalCheck home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 27 8v7.2c0 6.5-4.5 11.1-11 13.3C9.5 26.3 5 21.7 5 15.2V8l11-4.5Z" stroke="currentColor" stroke-width="2"/><path d="m11.2 16.2 3.1 3.1 6.6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>signal<span class="brand-light">check</span></span>
+      </a>
+      <span>Built with curiosity &amp; care <span class="footer-heart">♥</span></span>
+      <span class="footer-mono">A STUDENT PORTFOLIO PROJECT · 2026</span>
+    </footer>
+  </body>
+</html>
