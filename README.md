@@ -1,6 +1,6 @@
 # SignalCheck
 
-SignalCheck is a small, privacy-first web app that helps people learn to spot common phishing warning signs in text messages and emails. It is designed as a Singapore-focused student portfolio project.
+SignalCheck is a small, privacy-first web app that helps people learn to spot common phishing warning signs in text messages and emails. It is designed as a student portfolio project.
 
 ## Run it
 
